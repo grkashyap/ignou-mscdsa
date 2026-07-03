@@ -19,15 +19,16 @@ class Stack:
     def pop(self) -> T:
         if self.size == 0:
             print('Stack is empty')
-            return None
+            return ''
 
-        val = self.items[self.size]
+        val = self.items.pop()
+        self.size -= 1
         return val
 
     def peek(self) -> T:
         if self.size == 0:
             print('Stack is empty')
-            return None
+            return ''
 
         return self.items[self.size-1]
 
@@ -59,6 +60,8 @@ if __name__ == '__main__':
             print(f'Removing value at the top of the stack and returning: {stack.pop()}')
         elif operation == 3:
             print(f'Returning value at the top of the stack without removing: {stack.peek()}')
-        else:
+        elif operation == 4:
             print('Values in the stack')
             stack.print()
+        else:
+            print('Invalid operation')
