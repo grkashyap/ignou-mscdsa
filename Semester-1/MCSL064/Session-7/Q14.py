@@ -8,15 +8,15 @@ Operations Supported -
  - Peek - Retrieve the front or back element of the queue without removing it
 
 """
-from typing import TypeVar
+from typing import TypeVar, Generic
 
 T = TypeVar('T')
 
-class Dequeue:
+class Dequeue(Generic[T]):
 
     def __init__(self):
-        self.queue = []
-        self.size = 0
+        self.queue: list[T] = []
+        self.size: int = 0
 
     def append(self, element: T) -> T:
         self.queue.append(element)
@@ -24,9 +24,9 @@ class Dequeue:
         dequeue.print()
         return element
 
-    def appendLeft(self, element: T) -> T:
+    def append_left(self, element: T) -> T:
         self.queue.insert(0, element)
-        self.size -= 1
+        self.size += 1
         dequeue.print()
         return element
 
@@ -39,12 +39,12 @@ class Dequeue:
         dequeue.print()
         return val
 
-    def popLeft(self) -> T | None:
+    def pop_left(self) -> T | None:
         if self.__is_queue_empty():
             print("Dequeue is empty!")
             return None
 
-        val = self.queue.pop()
+        val = self.queue.pop(0)
         dequeue.print()
         return val
 
@@ -69,9 +69,9 @@ if __name__ == '__main__':
     print(dequeue.peek())
     print('Adding elements to Dequeue: ')
     dequeue.append(1)
-    dequeue.appendLeft(2)
+    dequeue.append_left(2)
     dequeue.append(3)
     print('Peeking elements from Dequeue: ',dequeue.peek())
     print('Removing elements from Dequeue: ')
     dequeue.pop()
-    dequeue.popLeft()
+    dequeue.pop_left()
