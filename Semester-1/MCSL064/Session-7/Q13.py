@@ -5,8 +5,8 @@ T = TypeVar('T')
 class Queue:
 
     def __init__(self):
-        self.queue = []
-        self.size = 0
+        self.queue: T = []
+        self.size: int = 0
 
     def enqueue(self, element: T) -> None:
         self.queue.append(element)
