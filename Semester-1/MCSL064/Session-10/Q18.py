@@ -27,9 +27,8 @@ class BinaryTree:
             if not current_node.right:
                current_node.right = node
                return
-            queue.append(current_node.right)
 
-        return self.root
+            queue.append(current_node.right)
 
     def print_tree(self, node) -> None:
         if node:

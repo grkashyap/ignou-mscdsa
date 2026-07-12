@@ -1,6 +1,6 @@
 def merge_sort(arr: list) -> list:
 
-    if len(arr) == 1:
+    if len(arr) <= 1:
         return arr
 
     mid = len(arr) // 2
@@ -11,7 +11,7 @@ def merge_sort(arr: list) -> list:
     i=j=k=0
 
     while i < len(left_arr) and j < len(right_arr):
-        if left_arr[i] < right_arr[j]:
+        if left_arr[i] <= right_arr[j]:
             arr[k] = left_arr[i]
             i += 1
         else:
