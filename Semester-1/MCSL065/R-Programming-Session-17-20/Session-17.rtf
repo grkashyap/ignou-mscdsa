@@ -1,0 +1,230 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2870
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww27120\viewh13520\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs48 \cf0 Session-17\
+\
+> setwd("~/IGNOU-MSCDSA/Semester-I/programming-assignments/ignou-mscdsa/Semester-1/MCSL065/R-Programming-Session-17-20")\
+> \
+> # Q-52\
+> csv_file_path <- "./PRODUCT.csv"\
+> csv_file_data <- read.csv(file = csv_file_path)\
+> \
+> cat("Data from csv file:\\n")\
+Data from csv file:\
+> str(csv_file_data)\
+'data.frame':	150 obs. of  13 variables:\
+ $ Record_ID          : int  1000 1001 1002 1003 1004 1005 1006 1007 1008 1009 ...\
+ $ Month              : chr  "2025-04" "2025-08" "2025-01" "2025-09" ...\
+ $ Product_Name       : chr  "Air Purifier Pro" "Wireless Noise-Canceling Headphones" "Stainless Steel Air Fryer" "Ergonomic Desk Chair" ...\
+ $ Category           : chr  "Home Appliances" "Electronics" "Kitchen" "Furniture" ...\
+ $ Original_Price_USD : num  230 258 130 305 245 ...\
+ $ Discount_Percent   : int  15 5 5 10 0 5 20 5 0 20 ...\
+ $ Effective_Price_USD: num  195 245 124 275 245 ...\
+ $ Ad_Expenditure_USD : num  15568 5773 2597 5507 17579 ...\
+ $ Customer_Visits    : int  23979 10809 8277 8992 33147 27689 39239 21564 6198 28788 ...\
+ $ Units_Sold         : int  1947 454 519 830 731 946 2379 1616 410 959 ...\
+ $ Total_Sales_USD    : num  380502 111407 64252 228200 179183 ...\
+ $ Gross_Profit_USD   : num  178136 52480 31229 89615 82257 ...\
+ $ Net_Profit_USD     : num  162568 46707 28632 84108 64678 ...\
+> \
+> cat("\\nSummary of the data:\\n")\
+\
+Summary of the data:\
+> print(summary(csv_file_data))\
+   Record_ID          Month        Product_Name      Category   Original_Price_USD Discount_Percent Effective_Price_USD Ad_Expenditure_USD\
+ Min.   :1000   Length   :150   Length   :150   Length   :150   Min.   :  84.67    Min.   : 0.00    Min.   :  71.97     Min.   : 1564     \
+ 1st Qu.:1037   N.unique : 15   N.unique : 10   N.unique :  7   1st Qu.: 200.38    1st Qu.: 5.00    1st Qu.: 174.94     1st Qu.: 6992     \
+ Median :1074   N.blank  :  0   N.blank  :  0   N.blank  :  0   Median : 306.85    Median :10.00    Median : 245.97     Median :13623     \
+ Mean   :1074   Min.nchar:  7   Min.nchar: 16   Min.nchar:  5   Mean   : 447.44    Mean   :10.57    Mean   : 399.75     Mean   :13322     \
+ 3rd Qu.:1112   Max.nchar:  7   Max.nchar: 35   Max.nchar: 15   3rd Qu.: 543.82    3rd Qu.:20.00    3rd Qu.: 449.94     3rd Qu.:19697     \
+ Max.   :1149                                                   Max.   :1514.39    Max.   :25.00    Max.   :1514.39     Max.   :24904     \
+ Customer_Visits   Units_Sold     Total_Sales_USD   Gross_Profit_USD  Net_Profit_USD   \
+ Min.   : 4488   Min.   : 117.0   Min.   :  23219   Min.   :   9967   Min.   :   7412  \
+ 1st Qu.:14086   1st Qu.: 660.5   1st Qu.: 160081   1st Qu.:  67142   1st Qu.:  54288  \
+ Median :26255   Median :1321.5   Median : 308487   Median : 142650   Median : 129533  \
+ Mean   :26877   Mean   :1579.2   Mean   : 629904   Mean   : 268760   Mean   : 255438  \
+ 3rd Qu.:37402   3rd Qu.:2288.8   3rd Qu.: 707207   3rd Qu.: 321195   3rd Qu.: 301981  \
+ Max.   :60424   Max.   :5029.0   Max.   :5171642   Max.   :2826847   Max.   :2808766  \
+> \
+> # Q-53\
+> xls_file_path <- "company_data.xlsx"\
+> xls_file_data <- readxl::read_excel(path = xls_file_path, sheet = "Employees")\
+> print("Data from xls file:\\n")                                                                                                            \
+[1] "Data from xls file:\\n"\
+> print(xls_file_data)\
+# A tibble: 5 \'d7 4\
+  Employee_ID Name          Department Salary_USD\
+  <chr>       <chr>         <chr>           <dbl>\
+1 E01         Alice Smith   Sales           75000\
+2 E02         Bob Jones     IT              82000\
+3 E03         Charlie Brown Marketing       68000\
+4 E04         Diana Prince  Sales           78000\
+5 E05         Evan Wright   HR              62000\
+> \
+> # Q-54\
+> library(jsonlite)\
+> json_file_path <- "PRODUCT.json"\
+> json_file_data <- fromJSON(json_file_path)\
+> print("Data from JSON file: \\n")\
+[1] "Data from JSON file: \\n"\
+> print(json_file_data)\
+   Record_ID   Month                        Product_Name        Category Original_Price_USD Discount_Percent Effective_Price_USD\
+1       1000 2025-04                    Air Purifier Pro Home Appliances             229.92               15              195.43\
+2       1001 2025-08 Wireless Noise-Canceling Headphones     Electronics             258.31                5              245.39\
+3       1002 2025-01           Stainless Steel Air Fryer         Kitchen             130.32                5              123.80\
+4       1003 2025-09                Ergonomic Desk Chair       Furniture             305.49               10              274.94\
+5       1004 2025-10 Wireless Noise-Canceling Headphones     Electronics             245.12                0              245.12\
+6       1005 2025-02                Ergonomic Desk Chair       Furniture             325.20                5              308.94\
+7       1006 2025-12                   Gaming Laptop Pro       Computers            1513.73               20             1210.98\
+8       1007 2025-08                    4K OLED Smart TV     Electronics            1182.81                5             1123.67\
+9       1008 2025-09                    Air Purifier Pro Home Appliances             225.99                0              225.99\
+10      1009 2025-10                    Air Purifier Pro Home Appliances             211.55               20              169.24\
+11      1010 2025-05             Espresso Coffee Machine         Kitchen             562.63               10              506.37\
+12      1011 2025-11                    Air Purifier Pro Home Appliances             220.50               10              198.45\
+13      1012 2026-01                Ergonomic Desk Chair       Furniture             320.27               25              240.20\
+14      1013 2025-12          Portable Bluetooth Speaker           Audio              92.82               20               74.26\
+15      1014 2025-07                   Gaming Laptop Pro       Computers            1507.43                5             1432.06\
+16      1015 2025-11             Espresso Coffee Machine         Kitchen             545.46                5              518.19\
+17      1016 2025-09             Espresso Coffee Machine         Kitchen             544.71                0              544.71\
+18      1017 2025-02             UltraClean Robot Vacuum Home Appliances             450.12                0              450.12\
+19      1018 2025-06                   Gaming Laptop Pro       Computers            1412.60               15             1200.71\
+20      1019 2025-09             UltraClean Robot Vacuum Home Appliances             441.94                0              441.94\
+21      1020 2026-03                 Smart Fitness Watch       Wearables             193.56               10              174.20\
+22      1021 2025-02           Stainless Steel Air Fryer         Kitchen             135.52               20              108.42\
+23      1022 2025-02             UltraClean Robot Vacuum Home Appliances             472.33               25              354.25\
+24      1023 2025-08                Ergonomic Desk Chair       Furniture             316.94               20              253.55\
+25      1024 2026-02                 Smart Fitness Watch       Wearables             207.76               25              155.82\
+26      1025 2025-01                Ergonomic Desk Chair       Furniture             319.80                0              319.80\
+27      1026 2025-06                 Smart Fitness Watch       Wearables             194.33                5              184.61\
+28      1027 2025-05             UltraClean Robot Vacuum Home Appliances             437.86               10              394.07\
+29      1028 2025-06                    4K OLED Smart TV     Electronics            1184.42                0             1184.42\
+30      1029 2025-02                 Smart Fitness Watch       Wearables             200.13               25              150.10\
+31      1030 2025-07          Portable Bluetooth Speaker           Audio              85.80               10               77.22\
+32      1031 2025-10                    Air Purifier Pro Home Appliances             226.82               20              181.46\
+33      1032 2025-08             UltraClean Robot Vacuum Home Appliances             459.09               15              390.23\
+34      1033 2025-10           Stainless Steel Air Fryer         Kitchen             130.55                5              124.02\
+35      1034 2025-11          Portable Bluetooth Speaker           Audio              85.68               10               77.11\
+36      1035 2025-07                 Smart Fitness Watch       Wearables             191.80                0              191.80\
+37      1036 2025-12                 Smart Fitness Watch       Wearables             203.86                5              193.67\
+38      1037 2026-02 Wireless Noise-Canceling Headphones     Electronics             239.85                0              239.85\
+39      1038 2025-06                    4K OLED Smart TV     Electronics            1227.60                0             1227.60\
+40      1039 2025-05                Ergonomic Desk Chair       Furniture             319.17                0              319.17\
+41      1040 2025-10                    Air Purifier Pro Home Appliances             222.55               10              200.30\
+42      1041 2025-08                Ergonomic Desk Chair       Furniture             334.20               25              250.65\
+43      1042 2025-12                 Smart Fitness Watch       Wearables             191.61               20              153.29\
+44      1043 2026-01 Wireless Noise-Canceling Headphones     Electronics             239.86               15              203.88\
+45      1044 2025-03 Wireless Noise-Canceling Headphones     Electronics             244.55                0              244.55\
+46      1045 2025-05                   Gaming Laptop Pro       Computers            1486.34               20             1189.07\
+47      1046 2025-07             Espresso Coffee Machine         Kitchen             573.69               20              458.95\
+48      1047 2025-06           Stainless Steel Air Fryer         Kitchen             127.37                0              127.37\
+49      1048 2025-03                Ergonomic Desk Chair       Furniture             319.78                0              319.78\
+50      1049 2026-01                    Air Purifier Pro Home Appliances             229.48               25              172.11\
+51      1050 2026-03 Wireless Noise-Canceling Headphones     Electronics             241.07               15              204.91\
+52      1051 2025-02                   Gaming Laptop Pro       Computers            1389.30                0             1389.30\
+53      1052 2025-09                    Air Purifier Pro Home Appliances             222.02                5              210.92\
+54      1053 2026-01                 Smart Fitness Watch       Wearables             189.28               10              170.35\
+55      1054 2025-03             UltraClean Robot Vacuum Home Appliances             453.75               25              340.31\
+56      1055 2025-06                    4K OLED Smart TV     Electronics            1250.96               25              938.22\
+57      1056 2026-02             UltraClean Robot Vacuum Home Appliances             440.75               25              330.56\
+58      1057 2025-12          Portable Bluetooth Speaker           Audio              85.50                5               81.22\
+59      1058 2025-09                    4K OLED Smart TV     Electronics            1171.19               10             1054.07\
+60      1059 2026-01                 Smart Fitness Watch       Wearables             207.77               10              186.99\
+61      1060 2025-07                    4K OLED Smart TV     Electronics            1189.35               15             1010.95\
+62      1061 2026-01             UltraClean Robot Vacuum Home Appliances             430.36                0              430.36\
+63      1062 2026-03                    4K OLED Smart TV     Electronics            1229.99               25              922.49\
+64      1063 2025-03             UltraClean Robot Vacuum Home Appliances             439.86                5              417.87\
+65      1064 2025-10                    Air Purifier Pro Home Appliances             219.96               10              197.96\
+66      1065 2025-11 Wireless Noise-Canceling Headphones     Electronics             242.82                0              242.82\
+67      1066 2026-03                 Smart Fitness Watch       Wearables             203.51               10              183.16\
+68      1067 2025-08                   Gaming Laptop Pro       Computers            1499.60               15             1274.66\
+69      1068 2026-03                 Smart Fitness Watch       Wearables             191.61                0              191.61\
+70      1069 2025-11                 Smart Fitness Watch       Wearables             202.33                0              202.33\
+71      1070 2025-05          Portable Bluetooth Speaker           Audio              89.43               10               80.49\
+72      1071 2025-06           Stainless Steel Air Fryer         Kitchen             124.56               20               99.65\
+73      1072 2025-03             UltraClean Robot Vacuum Home Appliances             435.80                5              414.01\
+74      1073 2025-03             Espresso Coffee Machine         Kitchen             561.73               20              449.38\
+75      1074 2025-03                 Smart Fitness Watch       Wearables             193.88                5              184.19\
+76      1075 2026-01             UltraClean Robot Vacuum Home Appliances             454.21               15              386.08\
+   Ad_Expenditure_USD Customer_Visits Units_Sold Total_Sales_USD Gross_Profit_USD Net_Profit_USD\
+1            15568.47           23979       1947       380502.21        178136.33      162567.86\
+2             5772.89           10809        454       111407.06         52480.36       46707.47\
+3             2596.64            8277        519        64252.20         31229.14       28632.50\
+4             5507.32            8992        830       228200.20         89615.44       84108.12\
+5            17579.48           33147        731       179182.72         82257.05       64677.57\
+6            13721.60           27689        946       292257.24        123991.38      110269.78\
+7            15550.65           39239       2379      2880921.42       1162680.54     1147129.89\
+8            14253.36           21564       1616      1815850.72        941461.52      927208.16\
+9             1629.77            6198        410        92655.90         50274.68       48644.91\
+10           16147.51           28788        959       162301.16         64697.66       48550.15\
+11           22349.50           42720       3365      1703935.05        745708.77      723359.27\
+12            2097.35            4488        117        23218.65          9967.48        7870.13\
+13            7358.37           14361        530       127306.00         46003.27       38644.90\
+14           16384.99           40596       3877       287906.02        119253.64      102868.65\
+15            4086.22            8751        689       986689.34        518588.61      514502.39\
+16            4316.84            8928        752       389678.88        191837.89      187521.05\
+17            7467.01           13900        401       218428.71         98342.27       90875.26\
+18            8048.19           21663        744       334889.28        179336.73      171288.54\
+19           19398.06           30869       2325      2791650.75       1105648.15     1086250.09\
+20            2458.22            7530        456       201524.64        110504.27      108046.05\
+21            5597.61           14055        476        82919.20         38316.25       32718.64\
+22            7561.63           17481       1689       183121.38         67411.23       59849.60\
+23           14619.90           36018       3350      1186737.50        340732.37      326112.47\
+24           21496.82           53520       5029      1275102.95        451222.43      429725.61\
+25            8172.14           13610       1626       253363.32         95402.26       87230.12\
+26           10112.02           23515       1487       475542.60        246898.83      236786.81\
+27           24365.75           43828       3263       602382.43        285165.82      260800.07\
+28           14942.10           35273        957       377124.99        146885.73      131943.63\
+29           23315.49           42730       1841      2180517.22       1013692.65      990377.16\
+30           17856.70           37049       1435       215393.50         68497.37       50640.67\
+31           22118.27           50383       2513       194053.86         90696.64       68578.37\
+32           22961.15           45343       3179       576861.34        194822.05      171860.90\
+33           22415.13           38360       2727      1064157.21        496285.17      473870.04\
+34           15384.58           20953        512        63498.24         27921.13       12536.55\
+35           19594.85           30646        849        65466.39         28867.15        9272.30\
+36           24284.12           53808       1208       231694.40        118191.46       93907.34\
+37            5831.84           10501        271        52484.57         22567.65       16735.81\
+38           23463.43           49286       2513       602743.05        291901.75      268438.32\
+39           14801.87           22645        577       708325.20        382909.48      368107.61\
+40           13052.97           25290        768       245122.56        124182.73      111129.76\
+41            2564.64            6355        544       108963.20         46508.34       43943.70\
+42           21879.17           47530       4852      1216153.80        376656.07      354776.90\
+43           20785.03           44105       2000       306580.00        123632.26      102847.23\
+44            3172.93            7653        703       143327.64         67055.51       63882.58\
+45           17873.32           38242       2608       637786.40        332794.74      314921.42\
+46           24776.87           45313       2684      3191463.88       1086525.17     1061748.30\
+47           11581.36           26998       2802      1285977.90        481393.90      469812.54\
+48            2756.90            8874        628        79988.36         41154.77       38397.87\
+49            3655.05            8528        654       209136.12         98685.14       95030.09\
+50           24904.38           33828       3258       560734.38        183478.59      158574.21\
+51           16028.12           23463        743       152248.13         56925.63       40897.51\
+52           24686.03           43380       1832      2545197.60       1192985.13     1168299.10\
+53           18142.26           35869       1377       290436.84        142765.62      124623.36\
+54            2823.13            5384        174        29640.90         12682.12        9858.99\
+55           10309.46           18028       2103       715671.93        285105.79      274796.33\
+56            7445.27           17893        658       617348.76        233257.79      225812.52\
+57           17877.74           32566       3786      1251500.16        490938.76      473061.02\
+58            5487.48           13304        633        51412.26         25816.07       20328.59\
+59            2259.42            6396        278       293031.46        142179.21      139919.79\
+60           15157.32           37554       1125       210363.75         84688.99       69531.67\
+61           12788.70           34413       1949      1970341.55        735018.29      722229.59\
+62            4645.52            7318        179        77034.44         37040.36       32394.84\
+63           15251.01           34375       1777      1639264.73        610886.63      595635.62\
+64           22138.19           51029       1280       534873.60        266387.42      244249.23\
+65           21037.23           35380       1920       380083.20        156899.40      135862.17\
+66            1841.80            6319        350        84987.00         43409.29       41567.49\
+67           12096.40           30943       2296       420535.36        173052.97      160956.57\
+68            3056.55            4908        365       465250.90        199925.79      196869.24\
+69            5069.71            8447        344        65913.84         30341.54       25271.83\
+70            6018.79            9786        294        59485.02         31059.57       25040.78\
+71            9865.80           25120       1184        95300.16         46674.64       36808.84\
+72           23140.50           31196       1599       159340.35         53655.98       30515.48\
+73           10206.09           19918       1046       433054.46        193850.18      183644.09\
+74           13524.42           28268       1045       469602.10        179185.11      165660.69\
+75           10366.18           14179        618       113829.42         58476.43       48110.25\
+76           20045.52           38716       1269       489935.52        199600.48      179554.96\
+ [ reached 'max' / getOption("max.print") -- omitted 74 rows ]\
+> }

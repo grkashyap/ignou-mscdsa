@@ -1,0 +1,148 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2870
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww28180\viewh14480\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs48 \cf0 Session-18\
+\
+\
+> # Define Data\
+> data <- data.frame(\
++   Customer_ID = c(1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008, 1009, 1010),\
++   Age = c(25, 34, NA, 45, 29, NA, 52, 38, NA, 31),\
++   Gender = c('Male', 'Female', 'Female', NA, 'Male', 'Female', NA, 'Male', 'Female', 'Male'),\
++   Income_USD = c(55000, 62000, 48000, 71000, NA, 53000, 89000, NA, 61000, 58000),\
++   City = c('New York', 'Los Angeles', 'Chicago', 'Houston', 'Phoenix', 'Chicago', NA, 'Miami', 'New York', 'Houston'),\
++   Purchase_Amount = c(120.5, 250.0, 85.0, NA, 310.0, NA, 450.0, 95.0, 210.0, 175.0)\
++ )\
+> \
+> # Q-55\
+> print("Summary of the data:")\
+[1] "Summary of the data:"\
+> print(summary(data))\
+  Customer_ID        Age              Gender     Income_USD           City    Purchase_Amount\
+ Min.   :1001   Min.   :25.00   Length   :10   Min.   :48000   Length   :10   Min.   : 85.0  \
+ 1st Qu.:1003   1st Qu.:30.00   N.unique : 2   1st Qu.:54500   N.unique : 6   1st Qu.:114.1  \
+ Median :1006   Median :34.00   N.blank  : 0   Median :59500   N.blank  : 0   Median :192.5  \
+ Mean   :1006   Mean   :36.29   Min.nchar: 4   Mean   :62125   Min.nchar: 5   Mean   :211.9  \
+ 3rd Qu.:1008   3rd Qu.:41.50   Max.nchar: 6   3rd Qu.:64250   Max.nchar:11   3rd Qu.:265.0  \
+ Max.   :1010   Max.   :52.00   NAs      : 2   Max.   :89000   NAs      : 1   Max.   :450.0  \
+                NAs    :3                      NAs    :2                      NAs    :2      \
+> \
+> print("Number of rows:")\
+[1] "Number of rows:"\
+> print(nrow(data))\
+[1] 10\
+> \
+> print("Number of columns:")\
+[1] "Number of columns:"\
+> print(ncol(data))\
+[1] 6\
+> \
+> print("Missing data:")\
+[1] "Missing data:"\
+> print(colSums(is.na(data)))\
+    Customer_ID             Age          Gender      Income_USD            City Purchase_Amount \
+              0               3               2               2               1               2 \
+> \
+> # Q-56\
+> library(dplyr)\
+> print("Filter records where Age>30:")\
+[1] "Filter records where Age>30:"\
+> dplyr::filter(data, Age>30)\
+  Customer_ID Age Gender Income_USD        City Purchase_Amount\
+1        1002  34 Female      62000 Los Angeles             250\
+2        1004  45   <NA>      71000     Houston              NA\
+3        1007  52   <NA>      89000        <NA>             450\
+4        1008  38   Male         NA       Miami              95\
+5        1010  31   Male      58000     Houston             175\
+> \
+> print("Selecting only City column:")\
+[1] "Selecting only City column:"\
+> select(data, City)\
+          City\
+1     New York\
+2  Los Angeles\
+3      Chicago\
+4      Houston\
+5      Phoenix\
+6      Chicago\
+7         <NA>\
+8        Miami\
+9     New York\
+10     Houston\
+> \
+> print("Adding monthly Income in USD:")\
+[1] "Adding monthly Income in USD:"\
+> select(data, Income_USD) |> mutate(Monthly_Income_USD = Income_USD/12)\
+   Income_USD Monthly_Income_USD\
+1       55000           4583.333\
+2       62000           5166.667\
+3       48000           4000.000\
+4       71000           5916.667\
+5          NA                 NA\
+6       53000           4416.667\
+7       89000           7416.667\
+8          NA                 NA\
+9       61000           5083.333\
+10      58000           4833.333\
+> \
+> # Q-57\
+> print("Data before removing NA values:")\
+[1] "Data before removing NA values:"\
+> print(data)\
+   Customer_ID Age Gender Income_USD        City Purchase_Amount\
+1         1001  25   Male      55000    New York           120.5\
+2         1002  34 Female      62000 Los Angeles           250.0\
+3         1003  NA Female      48000     Chicago            85.0\
+4         1004  45   <NA>      71000     Houston              NA\
+5         1005  29   Male         NA     Phoenix           310.0\
+6         1006  NA Female      53000     Chicago              NA\
+7         1007  52   <NA>      89000        <NA>           450.0\
+8         1008  38   Male         NA       Miami            95.0\
+9         1009  NA Female      61000    New York           210.0\
+10        1010  31   Male      58000     Houston           175.0\
+> print("Data after removing NA values:")\
+[1] "Data after removing NA values:"\
+> print(na.omit(data))\
+   Customer_ID Age Gender Income_USD        City Purchase_Amount\
+1         1001  25   Male      55000    New York           120.5\
+2         1002  34 Female      62000 Los Angeles           250.0\
+10        1010  31   Male      58000     Houston           175.0\
+> \
+> print("Converting Numeric values to Numeric data type:")\
+[1] "Converting Numeric values to Numeric data type:"\
+> data$Age <- as.numeric(data$Age)\
+> data$Income_USD <- as.numeric(data$Income_USD)\
+> print(data)\
+   Customer_ID Age Gender Income_USD        City Purchase_Amount\
+1         1001  25   Male      55000    New York           120.5\
+2         1002  34 Female      62000 Los Angeles           250.0\
+3         1003  NA Female      48000     Chicago            85.0\
+4         1004  45   <NA>      71000     Houston              NA\
+5         1005  29   Male         NA     Phoenix           310.0\
+6         1006  NA Female      53000     Chicago              NA\
+7         1007  52   <NA>      89000        <NA>           450.0\
+8         1008  38   Male         NA       Miami            95.0\
+9         1009  NA Female      61000    New York           210.0\
+10        1010  31   Male      58000     Houston           175.0\
+> \
+> print("Converting Gender and City to Factor:")\
+[1] "Converting Gender and City to Factor:"\
+> data$Gender <- as.factor(data$Gender)\
+> data$City <- as.factor(data$City)\
+> print(data)\
+   Customer_ID Age Gender Income_USD        City Purchase_Amount\
+1         1001  25   Male      55000    New York           120.5\
+2         1002  34 Female      62000 Los Angeles           250.0\
+3         1003  NA Female      48000     Chicago            85.0\
+4         1004  45   <NA>      71000     Houston              NA\
+5         1005  29   Male         NA     Phoenix           310.0\
+6         1006  NA Female      53000     Chicago              NA\
+7         1007  52   <NA>      89000        <NA>           450.0\
+8         1008  38   Male         NA       Miami            95.0\
+9         1009  NA Female      61000    New York           210.0\
+10        1010  31   Male      58000     Houston           175.0\
+> }
